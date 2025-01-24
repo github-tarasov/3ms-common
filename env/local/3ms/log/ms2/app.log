@@ -1,0 +1,4 @@
+2025-01-24 12:12:01,585 INFO org.ms.ms2.Ms2Application [main] Starting Ms2Application v1.0-SNAPSHOT using Java 24-ea with PID 1 (/app/app.jar started by root in /)
+2025-01-24 12:12:01,591 DEBUG org.ms.ms2.Ms2Application [main] Running with Spring Boot v3.4.1, Spring v6.2.1
+2025-01-24 12:12:01,605 INFO org.ms.ms2.Ms2Application [main] No active profile set, falling back to 1 default profile: "default"
+2025-01-24 12:12:11,813 INFO org.ms.ms2.Ms2Application [main] Started Ms2Application in 11.738 seconds (process running for 13.06)

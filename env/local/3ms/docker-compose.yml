@@ -1,0 +1,72 @@
+version: '3'
+
+services:
+  ms1:
+    image: docker4tarasov/ms1:latest
+    container_name: ms1
+    ports:
+      - 8001:8001
+      - 5001:5001
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    environment:
+      SPRING_APPLICATION_NAME: ms1
+      SERVER_PORT: 8001
+      DEBUG_PORT: 5001
+      SPRING_DATASOURCE_URL: jdbc:mariadb://host.docker.internal:3306/my-database
+      SPRING_DATASOURCE_USERNAME: my-user
+      SPRING_DATASOURCE_PASSWORD: my-pw
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      WEBSOCKET_URI: ws://ms2:8002/websocket
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://host.docker.internal:4318
+      OTEL_EXPORTER_OTLP_TRACES_ENDPOINT: http://host.docker.internal:4318
+      INTERACTION_INTERVAL_IN_SECONDS: 30
+    volumes:
+      - ./log/ms1:/log
+    depends_on:
+      - ms2
+
+  ms2:
+    image: docker4tarasov/ms2:latest
+    container_name: ms2
+    ports:
+      - 8002:8002
+      - 5002:5002
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    environment:
+      SPRING_APPLICATION_NAME: ms2
+      SERVER_PORT: 8002
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: host.docker.internal:29092
+      KAFKA_TOPIC: ms3
+      WEBSOCKET_PATH: /websocket
+      JAEGER_SERVER: http://host.docker.internal:4318
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://host.docker.internal:4318
+      OTEL_EXPORTER_OTLP_TRACES_ENDPOINT: http://host.docker.internal:4318
+      DEBUG_PORT: 5002
+    volumes:
+      - ./log/ms2:/log
+
+  ms3:
+    image: docker4tarasov/ms3:latest
+    container_name: ms3
+    ports:
+      - 5003:5003
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    environment:
+      SPRING_APPLICATION_NAME: ms3
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: host.docker.internal:29092
+      FEIGN_MS1_URL: http://ms1:8001
+      FEIGN_CLIENT_CONFIG_DEFAULT_CONNECTTIMEOUTLOCALHOST: 5000
+      FEIGN_CLIENT_CONFIG_DEFAULT_READTIMEOUT: 5000
+      FEIGN.CLIENT.CONFIG.DEFAULT.LOGGERLEVEL: basic
+      KAFKA_TOPIC: ms3
+      JAEGER_SERVER: http://host.docker.internal:4318
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://host.docker.internal:4318
+      OTEL_EXPORTER_OTLP_TRACES_ENDPOINT: http://host.docker.internal:4318
+      DEBUG_PORT: 5003
+    depends_on:
+      - ms2
+    volumes:
+      - ./log/ms3:/log

@@ -1,0 +1,5 @@
+2025-01-24 12:12:03,028 INFO org.ms.ms1.Ms1Application [main] Starting Ms1Application v1.0-SNAPSHOT using Java 24-ea with PID 1 (/app/app.jar started by root in /)
+2025-01-24 12:12:03,033 DEBUG org.ms.ms1.Ms1Application [main] Running with Spring Boot v3.4.1, Spring v6.2.1
+2025-01-24 12:12:03,041 INFO org.ms.ms1.Ms1Application [main] No active profile set, falling back to 1 default profile: "default"
+2025-01-24 12:12:15,748 DEBUG org.ms.ms1.websocket.MS1WebSocketHandler [WebSocketClient-AsyncIO-2] WebSocket connection established
+2025-01-24 12:12:18,398 INFO org.ms.ms1.Ms1Application [main] Started Ms1Application in 17.32 seconds (process running for 19.096)
