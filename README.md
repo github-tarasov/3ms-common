@@ -70,6 +70,6 @@
 
 ### Ссылки
 * [Swagger UI](http://localhost:8001/swagger-ui/index.html)
-* [OpenTelemetry UI (Jaeger)](http://localhost:16686)
+* [Jaeger UI](http://localhost:16686)
 * [Git Hub](https://github.com/github-tarasov)
 * [Docker Hub](https://hub.docker.com/repositories/docker4tarasov)
