@@ -1,4 +1,0 @@
-2025-01-24 12:12:04,111 INFO org.ms.ms3.Ms3Application [main] Starting Ms3Application v1.0-SNAPSHOT using Java 24-ea with PID 1 (/app/app.jar started by root in /)
-2025-01-24 12:12:04,123 DEBUG org.ms.ms3.Ms3Application [main] Running with Spring Boot v3.4.1, Spring v6.2.1
-2025-01-24 12:12:04,131 INFO org.ms.ms3.Ms3Application [main] No active profile set, falling back to 1 default profile: "default"
-2025-01-24 12:12:13,022 INFO org.ms.ms3.Ms3Application [main] Started Ms3Application in 11.348 seconds (process running for 13.804)
