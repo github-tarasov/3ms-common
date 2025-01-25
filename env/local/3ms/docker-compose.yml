@@ -19,7 +19,6 @@ services:
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
       WEBSOCKET_URI: ws://ms2:8002/websocket
       OTEL_EXPORTER_OTLP_ENDPOINT: http://host.docker.internal:4318
-      OTEL_EXPORTER_OTLP_TRACES_ENDPOINT: http://host.docker.internal:4318
       INTERACTION_INTERVAL_IN_SECONDS: 30
     volumes:
       - ./log/ms1:/log
@@ -40,9 +39,7 @@ services:
       SPRING_KAFKA_BOOTSTRAP_SERVERS: host.docker.internal:29092
       KAFKA_TOPIC: ms3
       WEBSOCKET_PATH: /websocket
-      JAEGER_SERVER: http://host.docker.internal:4318
-      OTEL_EXPORTER_OTLP_ENDPOINT: http://host.docker.internal:4318
-      OTEL_EXPORTER_OTLP_TRACES_ENDPOINT: http://host.docker.internal:4318
+      JAEGER_HOST: host.docker.internal
       DEBUG_PORT: 5002
     volumes:
       - ./log/ms2:/log
@@ -62,9 +59,7 @@ services:
       FEIGN_CLIENT_CONFIG_DEFAULT_READTIMEOUT: 5000
       FEIGN.CLIENT.CONFIG.DEFAULT.LOGGERLEVEL: basic
       KAFKA_TOPIC: ms3
-      JAEGER_SERVER: http://host.docker.internal:4318
-      OTEL_EXPORTER_OTLP_ENDPOINT: http://host.docker.internal:4318
-      OTEL_EXPORTER_OTLP_TRACES_ENDPOINT: http://host.docker.internal:4318
+      JAEGER_HOST: host.docker.internal
       DEBUG_PORT: 5003
     depends_on:
       - ms2
